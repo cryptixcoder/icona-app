@@ -7,3 +7,33 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+@import "resources/assets/sass/modal.scss";
+
+.container{
+	max-width: 960px;
+}
+
+.attached-photos{
+	height: 0;
+	overflow: hidden;
+}
+
+.add-photo-btn{
+	margin-top: -38px;
+}
+
+.button-group {
+	display:flex;
+	margin-bottom: 10px;
+}
+
+.button-group a{
+	border: 1px solid #d3e0e9;
+    text-align: center;
+    padding: 20px 30px;
+}
+
+.private-tow{
+	margin-right: 10px;
+}

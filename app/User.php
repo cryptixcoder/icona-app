@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'user_type'
     ];
 
     /**
@@ -28,6 +28,6 @@ class User extends Authenticatable
     ];
 
     public function tows(){
-        return $this->hadMany(Tow::class);
+        return $this->hasMany(Tow::class);
     }
 }

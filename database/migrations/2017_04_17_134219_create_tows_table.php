@@ -15,8 +15,24 @@ class CreateTowsTable extends Migration
     {
         Schema::create('tows', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('contract_id')->unsigned();
+            $table->integer('contract_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned();
+            $table->integer('parent_id')->unsigned()->nullable();
+            $table->string('tow_number');
+            $table->string('location')->nullable();
+            $table->string('make')->nullable();
+            $table->string('model')->nullable();
+            $table->string('year')->nullable();
+            $table->string('vehicle_color')->nullable();
+            $table->string('state')->nullable();
+            $table->string('tag_number')->nullable();
+            $table->string('vin')->nullable();
+            $table->integer('mileage')->nullable();
+            $table->string('officer_id')->nullable();
+            $table->string('complaint_id')->nullable();
+            $table->integer('lot_id')->unsigned()->nullable();
+            $table->float('latitude')->nullable();
+            $table->float('longitude')->nullable();
             $table->timestamps();
         });
     }

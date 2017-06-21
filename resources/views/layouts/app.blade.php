@@ -43,9 +43,14 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                       <li><a href="/contracts">Contracts</a></li>
+                       <li><a href="/lots">Lots</a></li>
+                       <li><a href="/tags">Tags</a></li>
+                       <li><a href="/tows">Tows</a></li>
+                       <li><a href="/invoices">Invoices</a></li>
+                       <li><a href="/users">Users</a></li>
                     </ul>
-
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -77,7 +82,6 @@
                 </div>
             </div>
         </nav>
-
         @yield('content')
     </div>
 

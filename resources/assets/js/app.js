@@ -14,7 +14,20 @@ require('./bootstrap');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('tow-form', require('./components/TowForm.vue'));
+Vue.component('invoice', require('./components/Invoice.vue'));
+Vue.component('modal', require('./components/Modal.vue'));
+Vue.component('new-tow', require('./components/NewTow.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+    	showTowModal: false
+    },
+
+    methods: {
+    	closeTowModal(){
+    		this.showTowModal = false;
+    	}
+    }
 });

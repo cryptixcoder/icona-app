@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tow extends Model
 {
-    protected $fillable = [];
+    protected $fillable = [
+        'user_id',
+        'tow_number'
+    ];
 
     public function attachments(){
     	return $this->hasMany(Attachment::class);
@@ -18,5 +21,9 @@ class Tow extends Model
 
     public function invoices(){
     	return $this->hasMany(Invoice::class);
+    }
+
+    public function children(){
+        return $this->hasMany(Tow::class, 'parent_id', 'id');
     }
 }

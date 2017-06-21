@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContractsTable extends Migration
+class CreateLotsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateContractsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contracts', function (Blueprint $table) {
+        Schema::create('lots', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('name');
-            $table->text('description')->nullable();
-            $table->string('prefix');
+            $table->string('name');
+            $table->string('street_address');
+            $table->string('city');
+            $table->string('state');
+            $table->string('zipcode');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateContractsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contracts');
+        Schema::dropIfExists('lots');
     }
 }

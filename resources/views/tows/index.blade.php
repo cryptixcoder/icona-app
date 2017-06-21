@@ -58,7 +58,7 @@
 									@endforeach
 								@else
 									<tr>
-										<td colspan="3">
+										<td colspan="6">
 											<p align="center">You currently have no tows. <a href="/tows/create">Create a tow</a></p>
 										</td>
 									</tr>

@@ -19,9 +19,9 @@
 							<thead>
 								<tr>
 									<th>ID</th>
-									<th>Name</th>
-									<th>Type</th>
-									<th></th>
+									<th>NAME</th>
+									<th>TYPE</th>
+									<th>ACTIONS</th>
 								</tr>
 							</thead>
 							<tbody>

@@ -34,6 +34,18 @@
 											</td>
 											<td>
 												<a href="/tags/{{ $tag->id }}/edit">Edit</a>
+
+												<a href="/tags/{{ $tag->id }}/remove"
+                                            onclick="if(confirm('Are you sure you want to delete')){ return true; }else{
+                                            		return false;
+                                            	}">
+                                            Delete
+                                        </a>
+
+                                        <form id="tag-delete-form-{{ $tag->id }}" action="/tags/{{ $tag->id }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                        </form>
 											</td>
 										</tr>
 

@@ -4,13 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App;
 use App\Tow;
 use App\Contract;
 
 class TowController extends Controller
 {
     public function index(){
-        $tows = Tow::all();
+        
+        if(request()->user()->user_type == "driver"){
+            $tows = request()->user()->tows()->parents()->active()->paginate(10);
+        }
+        else{
+            $tows = Tow::parents()
+                    ->active()
+                    ->paginate(10);
+        }
+
 
         return view('tows.index', [
             'tows' => $tows
@@ -18,7 +28,19 @@ class TowController extends Controller
     }
 
     public function show(Tow $tow){
-        return response()->json($tow);
+        $tow->load(['children','photos']);
+        
+        if(request()->ajax()){
+            return response()->json($tow);
+        }
+        else{
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadView('tows.show', [
+                'tow' => $tow
+            ]);
+    
+            return $pdf->download($tow->tow_number . ".pdf");
+        }
     }
 
     public function store(Request $request){
@@ -35,7 +57,9 @@ class TowController extends Controller
 
         $tow = $user->tows()->create([
             'contract_id' => $request->contract_id,
-            'tow_number' => $prefix . "-" . (Tow::count() + 1)
+            'tow_number' => $prefix . "-" . (Tow::count() + 1),
+            'latitude' => ($request->latitude) ? $request->latitude : null,
+            'longitude' => ($request->longitude) ? $request->longitude : null
         ]);
 
         return response()->json([
@@ -55,16 +79,57 @@ class TowController extends Controller
             'make' => $request->make,
             'model' => $request->model,
             'year' => $request->year,
-            'vehicle_color' => $request->vehicle_color
+            'vehicle_color' => $request->vehicle_color,
+            'state' => $request->state,
+            'tag_number' => $request->tag_number,
+            'vin' => $request->vin,
+            'mileage' => $request->mileage,
+            'officer_id' => $request->officer_id,
+            'complaint_number' => $request->complaint_number,
+            'lot_id' => $request->lot_id,
+            'phone' => $request->phone,
+            'vehicle_owner' => $request->vehicle_owner,
+            'location' => $request->location,
+            'lot_id' => $request->lot_id,
+            'tags' => implode(",",$request->tags)
         ]);
 
-        return response()->json(null, 200);
+        return response()->json([], 200);
 
     }
 
-    public function destroy(Request $request){
+    public function add_child(Request $request, Tow $tow){
+
+        $child = $tow->children()->create([
+            'user_id' => $tow->user_id,
+            'officer_id' => $tow->officer_id,
+            'complaint_number' => $tow->complaint_number,
+            'vehicle_owner' => $tow->vehicle_owner,
+            'tow_number' => $tow->tow_number . '-' . ($tow->children()->count() + 1),
+            'location' => $tow->location,
+            'latitude' => $tow->latitude,
+            'longitude' => $tow->longitude
+        ]);
+
+
+        return response()->json($child, 200);
+
+    }
+
+    public function destroy(Request $request, Tow $tow){
         $tow->delete();
 
-        return redirect('/tows');
+        if($request->ajax()){
+            return response(null, 200);
+        }
+        else{
+            return redirect('/tows');
+        }
+    }
+
+    public function tow_validator(Request $request, Tow $tow){
+        return response()->json([
+            'tow_validated' => $tow->photos()->count() >= 5
+        ]);
     }
 }

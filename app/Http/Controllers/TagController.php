@@ -9,9 +9,15 @@ class TagController extends Controller
 {
     public function index(){
         $tags = Tag::all();
-    	return view('tags.index',[
+    	
+        if(request()->ajax()){
+            return $tags;
+        }
+
+        return view('tags.index',[
             'tags' => $tags
         ]);
+
     }
 
     public function show(){
@@ -42,9 +48,9 @@ class TagController extends Controller
     	return response()->json(null, 200);
     }
 
-    public function delete(Request $request, Tag $tag){
+    public function destroy(Request $request, Tag $tag){
     	$tag->delete();
 
-    	return response()->json(null, 200);
+    	return redirect()->back();
     }
 }

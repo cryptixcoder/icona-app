@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
     <script>
@@ -43,12 +44,16 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
+                    @if(Auth::user()->isType('admin'))
                        <li><a href="/contracts">Contracts</a></li>
                        <li><a href="/lots">Lots</a></li>
                        <li><a href="/tags">Tags</a></li>
+                    @endif
                        <li><a href="/tows">Tows</a></li>
-                       <li><a href="/invoices">Invoices</a></li>
+                    @if(Auth::user()->isType('admin'))
+                       {{-- <li><a href="/invoices">Invoices</a></li> --}}
                        <li><a href="/users">Users</a></li>
+                    @endif
                     </ul>
                     
                     <!-- Right Side Of Navbar -->
@@ -64,6 +69,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    <li><a href="/account">Account Settings</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

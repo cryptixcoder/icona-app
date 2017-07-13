@@ -1,7 +1,7 @@
 <template>
 	
 	<div class="wrapper">
-		<h3>Manage Tow #{{ tow_number }}</h3>
+		<h3>Manage Tow #{{ tow_number }} <div class="indicator" v-if="valid == false"></div></h3>
 		<div class="panel panel-default">
 		<div class="panel-body">
 			<form>
@@ -20,7 +20,7 @@
 					<div class="col-md-4">
 						<div class="form-group">
 							<label>Tow Time</label>
-							<input type="text" class="form-control" v-model="time"  />
+							<input type="text" class="form-control" disabled v-model="tow_time"  />
 						</div>
 					</div>
 					<div class="col-md-4">
@@ -36,7 +36,7 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Vehicle Owner Name</label>
-							<input type="text" class="form-control" v-model="name"  />
+							<input type="text" class="form-control" v-model="vehicle_owner"  />
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -58,6 +58,12 @@
 				<div class="row">
 					<div class="col-md-4">
 						<div class="form-group">
+							<label>Vehicle Year</label>
+							<input type="text" class="form-control" v-model="year"  />
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
 							<label>Vehicle Make</label>
 							<input type="text" class="form-control" v-model="make"  />
 						</div>
@@ -68,19 +74,66 @@
 							<input type="text" class="form-control" v-model="model"  />
 						</div>
 					</div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<label>Vehicle Year</label>
-							<input type="text" class="form-control" v-model="year"  />
-						</div>
-					</div>
 				</div>
 				
 				<div class="row">
 					<div class="col-md-4">
 						<div class="form-group">
 							<label>State</label>
-							<input type="text" class="form-control" v-model="state"  />
+							
+							<select class="form-control" v-model="state">
+								<option value="">Select State</option>
+								<option value="AL">Alabama</option>
+								<option value="AK">Alaska</option>
+								<option value="AZ">Arizona</option>
+								<option value="AR">Arkansas</option>
+								<option value="CA">California</option>
+								<option value="CO">Colorado</option>
+								<option value="CT">Connecticut</option>
+								<option value="DE">Delaware</option>
+								<option value="FL">Florida</option>
+								<option value="GA">Georgia</option>
+								<option value="HI">Hawaii</option>
+								<option value="ID">Idaho</option>
+								<option value="IL">Illinois</option>
+								<option value="IN">Indiana</option>
+								<option value="IA">Iowa</option>
+								<option value="KS">Kansas</option>
+								<option value="KY">Kentucky</option>
+								<option value="LA">Louisiana</option>
+								<option value="ME">Maine</option>
+								<option value="MD">Maryland</option>
+								<option value="MA">Massachusetts</option>
+								<option value="MI">Michigan</option>
+								<option value="MN">Minnesota</option>
+								<option value="MS">Mississippi</option>
+								<option value="MO">Missouri</option>
+								<option value="MT">Montana</option>
+								<option value="NE">Nebraska</option>
+								<option value="NV">Nevada</option>
+								<option value="NH">New Hampshire</option>
+								<option value="NJ">New Jersey</option>
+								<option value="NM">New Mexico</option>
+								<option value="NY">New York</option>
+								<option value="NC">North Carolina</option>
+								<option value="ND">North Dakota</option>
+								<option value="OH">Ohio</option>
+								<option value="OK">Oklahoma</option>
+								<option value="OR">Oregon</option>
+								<option value="PA">Pennsylvania</option>
+								<option value="RI">Rhode Island</option>
+								<option value="SC">South Carolina</option>
+								<option value="SD">South Dakota</option>
+								<option value="TN">Tennessee</option>
+								<option value="TX">Texas</option>
+								<option value="UT">Utah</option>
+								<option value="VT">Vermont</option>
+								<option value="VA">Virginia</option>
+								<option value="WA">Washington</option>
+								<option value="WV">West Virginia</option>
+								<option value="WI">Wisconsin</option>
+								<option value="WY">Wyoming</option>
+							</select>
 						</div>
 					</div>
 					<div class="col-md-4">
@@ -92,7 +145,7 @@
 					<div class="col-md-4">
 						<div class="form-group">
 							<label>Color</label>
-							<input type="text" class="form-control" v-model="color"  />
+							<input type="text" class="form-control" v-model="vehicle_color"  />
 						</div>
 					</div>
 				</div>
@@ -114,48 +167,75 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="form-group">
-							<label>Tags</label>
-							<input type="text" class="form-control" v-model="tags" />
+							<label>Lot</label>
+							<select v-model="lot_id" class="form-control">
+								<option value="">Choose Lot</option>
+								<option v-for="lot in lots" v-bind:value="lot.id">{{ lot.name }}</option>
+							</select>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<h3>Photos</h3>
+						<div class="form-group">
+							<label>Tags</label>
+							<select multiple name="tags" class="form-control" ref="tgs" >
+								<optgroup>
+									<option v-for="t in tlist" :value="t.tag">{{ t.tag }}</option>
+								</optgroup>
+							</select>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-12">
+						<h3>Photos <a href="#" @click.prevent="attachPhotos()" class="add-photo-btn"><small>+ Add Photos</small></a></h3>
 						<input type="file" class="attached-photos" multiple @change="onPhotosAttached()" ref="photos">
-						<a href="#" @click.prevent="attachPhotos()" class="btn btn-primary pull-right add-photo-btn">Add Photos</a>
+						
 						<hr>
 					</div>
 				</div>
 				<div class="row" style="margin-bottom:30px; ">
-					<div class="col-md-3 col-sm-12 col-xs-12">
-						<img src="http://placehold.it/500x500" style="width: 100%; height: auto; display:block; margin-bottom: 10px;" alt="">
-					</div>
 
-					<div class="col-md-3 col-sm-12 col-xs-12">
-						<img src="http://placehold.it/500x500" style="width: 100%; height: auto; display:block; margin-bottom: 10px;" alt="">
-					</div>
-					<div class="col-md-3 col-sm-12 col-xs-12">
-						<img src="http://placehold.it/500x500" style="width: 100%; height: auto; display:block; margin-bottom: 10px;" alt="">
-					</div>
+					<photo v-for="photo in photos" :photo="photo"></photo>
 
+				</div>
+
+				<hr>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<button class="btn btn-primary pull-right" @click.prevent="updateTowRecord()" >Save</button>
+						</div>
+					</div>
 				</div>
 			</form>
 		</div>
 	</div>	
 	<a @click="addChild()" v-show="parent_id == null">Add Child</a>
-	<tow-form tow-id="100" v-for="child in children"></tow-form>
+	<child-tow :towid="child.id" v-for="(child, index) in children" :towindex="index"></child-tow>
 	</div>
 
 </template>
 <script>
 	import eventBus from '../events.js';
+	import Selectize from 'vue2-selectize';
+	import selectize from 'selectize';
 
 	export default {
+		components: {
+		    Selectize
+		},
+		computed: {
+			showIndicator: () => {
+				return this.valid == false;
+			}
+		},
 		data(){
 			return {
 				id: null,
-				name: "",
+				vehicle_owner: "",
 				phone: "",
 				tow_number: "",
 				location: "",
@@ -163,7 +243,7 @@
 				make: "",
 				model: "",
 				year: "",
-				color: "",
+				vehicle_color: "",
 				time: "",
 				state: "",
 				tag_number: "",
@@ -177,15 +257,56 @@
 				error: false,
 				success: false,
 				lots: [],
-				children: []
+				children: [],
+				photos: [],
+				tow_time: "",
+				tags: [],
+				tlist: [],
+				valid: true,
+				timer: null,
+				lot_id: ''
 			}
 		},
 
 		props: ['towid'],
 
 		mounted(){
+			this.loadTags();
+			this.loadLots();
 			this.loadTowRecord();
+			
 			this.initAutoSave();
+
+			this.timer = setInterval(() => {
+				this.checkValidation();
+			}, 1500);
+
+			window.onbeforeunload = () => {
+                if (this.valid == false) {
+                    return 'Are you sure you want to navigate away?';
+                }
+            }
+			
+			eventBus.$on('progress', (photoObject, e) => {
+				this.updateVideoUploadProgress(photoObject, e);
+				this.updateOverallProgress();
+			});
+
+			eventBus.$on('finished', (photoObject, e) => {
+				photoObject.uploading = false;
+				photoObject.finished = true;
+				photoObject.loading = false;
+			});
+
+			eventBus.$on('failed', (photoObject, e) => {
+				photoObject.failed = true;
+			});
+
+			eventBus.$on('removeChildTow', (index, e) => {
+				console.log(index);
+				this.children.splice(index, 1);
+			});
+
 		},
 
 		methods: {
@@ -195,14 +316,16 @@
 					 	var tow = response.data;
 
 					 	this.id = tow.id;
-					 	this.name = tow.name;
+					 	this.tow_time = tow.tow_time;
+					 	this.vehicle_owner = tow.vehicle_owner;
+					 	this.parent_id = tow.parent_id;
 					 	this.phone = tow.phone;
 					 	this.tow_number = tow.tow_number;
 					 	this.location = tow.location;
 					 	this.make = tow.make;
 					 	this.model = tow.model;
 					 	this.year = tow.year;
-					 	this.color = tow.color;
+					 	this.vehicle_color = tow.vehicle_color;
 					 	this.time = tow.time;
 					 	this.state = tow.state;
 					 	this.tag_number = tow.tag_number;
@@ -210,7 +333,21 @@
 					 	this.mileage = tow.mileage;
 					 	this.officer_id = tow.officer_id;
 					 	this.complaint_number = tow.complaint_number;
-					 	this.tags = tow.tags;
+					 	this.tags =  (tow.tags != null) ? tow.tags.split(',') : "" ;
+					 	this.children = tow.children;
+					 	this.photos = tow.photos;
+					 	this.lot_id = parseInt(tow.lot_id);
+
+					 	var $this = this;
+					 	
+					 	$(this.$refs.tgs).selectize({
+						    persist: false,
+						    maxItems: 100,
+						    items: this.tags,
+						    onChange(value){
+						    	$this.updateTags(value);
+						    }
+						});
 
 					 },(err) => {
 
@@ -218,15 +355,16 @@
 			},
 			updateTowRecord(){
 				this.saveStatus = "Saving Record...";
+		
 				axios.put('/tows/' + this.id, {
-					name: this.name,
+					vehicle_owner: this.vehicle_owner,
 					phone: this.phone,
 					tow_number: this.tow_number,
 					location: this.location,
 					make: this.make,
 					model: this.model,
 					year: this.year,
-					color: this.color,
+					vehicle_color: this.vehicle_color,
 					time: this.time,
 					state: this.state,
 					tag_number: this.tag_number,
@@ -234,10 +372,11 @@
 					mileage: this.mileage,
 					officer_id: this.officer_id,
 					complaint_number: this.complaint_number,
-					tags: this.tags
+					tags: this.tags,
+					lot_id: this.lot_id
 				})
 				.then((response) => {
-					console.log(response);
+				
 
 					// this.message = "Record Updated.";
 					// this.success = true;
@@ -252,29 +391,35 @@
 				});
 			},
 
-			genPhotoObject(photo){
-				var index = this.photos.push({
-					id: null,
-					photo: photo,
-					finished: false
-				}) - 1;
-
-				return this.photos[index];
-			},
-
-			storePhotoData(photo){
+			storeMetaData(photo){
 				var photoObject = this.genPhotoObject(photo);
 
 				return new Promise((resolve, reject) => {
-					axios.post('/photos', {
-						tow_id: this.tow.id
+					axios.post('/tows/' + this.towid + '/photos', {
+						extension: photoObject.photo.name.split('.').pop()
 					}).then((response) => {
 						photoObject.id = response.data.id;
+
 						resolve(photoObject);
-					}, () => {
+					},() => {
 						reject(photoObject);
 					});
 				});
+			},
+
+			genPhotoObject(photo){
+				var index = this.photos.push({
+					id: null,
+					tow_id: null,
+					filename: null,
+					notes: null,
+					photo: photo,
+					finished: false,
+					uploading: false,
+					loading: true
+				}) - 1;
+
+				return this.photos[index];
 			},
 
 			initAutoSave(){
@@ -297,36 +442,63 @@
 			},
 
 			onPhotosAttached(){
+				var photos = this.$refs.photos.files;
+				var photo;
 
+				for(var i = 0; i < photos.length; i++){
+					photo = photos[i];
+
+					this.storeMetaData(photo)
+						.then((photoObject) => {
+							this.upload(photoObject);
+						});
+				}
 			},
 
-			addChild(){
-				this.children.push({
-					id: null,
-					name: "",
-					phone: "",
-					tow_number: "",
-					location: "",
-					make: "",
-					model: "",
-					year: "",
-					color: "",
-					time: "",
-					state: "",
-					tag_number: "",
-					vin: "",
-					mileage: "",
-					officer_id: "",
-					complaint_number: "",
-					parent_id: true,
-					tags: "",
-					interval: null,
-					message: null,
-					error: false,
-					success: false,
-					lots: [],
-					children: []
+			upload(photoObject){
+				var form = new FormData();
+				
+				photoObject.uploading = true;
+
+				form.append('photo', photoObject.photo);
+				form.append('extension', photoObject.photo.name.split('.').pop());
+
+				axios.post('/photos/' + photoObject.id +'/upload', form).then((response) => {
+					photoObject.filename = response.data.filename;
+					photoObject.fullpath = response.data.fullpath;
+					eventBus.$emit('finished', photoObject);
+				}, () => {
+				 	eventBus.$emit('failed', photoObject);
 				});
+			},			
+
+			addChild(){
+				axios.post('/tows/' + this.id + '/children',{})
+					 .then((response) => {
+					 	var tow = response.data;
+					
+					 	this.children.push(tow);
+					 },() => {
+
+					 }); 
+			},
+
+			loadTags(){
+				axios.get('/tags')
+					.then((response) => {
+						this.tlist = response.data;
+					});
+			},
+
+			updateTags(t){
+				this.tags = t;
+			},
+
+			checkValidation(){
+				axios.get('/tows/' + this.id + '/valid')
+					 .then((response) => {
+					 	this.valid = response.data.tow_validated
+					 });
 			}
 		}
 	}

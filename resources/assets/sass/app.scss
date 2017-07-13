@@ -10,6 +10,10 @@
 
 @import "resources/assets/sass/modal.scss";
 
+@import "~selectize/dist/css/selectize.bootstrap3.css";
+
+@import "resources/assets/sass/dropdown.scss";
+
 .container{
 	max-width: 960px;
 }
@@ -36,4 +40,31 @@
 
 .private-tow{
 	margin-right: 10px;
+}
+
+.indicator{
+	background-color: red;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    /* display: block; */
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.photo img{
+	width: 100%; 
+	height: auto; 
+	display:block; 
+	margin-bottom: 10px;
+}
+
+.uploading-photo{
+	width: 121px;
+    height: 91px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }

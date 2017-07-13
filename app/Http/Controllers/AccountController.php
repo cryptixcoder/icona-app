@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class AccountController extends Controller
 {
     public function index(){
-    	return view('account.index', [
+    	return view('account', [
     		'user' => request()->user()
     	]);
     }
@@ -26,7 +26,7 @@ class AccountController extends Controller
         ];
 
         if($request->has('password')){
-            $payload['password'] => bcrypt($request->password)
+            $payload['password'] = bcrypt($request->password);
         }
 
     	$user->update($payload);

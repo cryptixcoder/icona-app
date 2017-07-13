@@ -14,9 +14,11 @@ require('./bootstrap');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('child-tow', require('./components/ChildTow.vue'));
 Vue.component('tow-form', require('./components/TowForm.vue'));
 Vue.component('invoice', require('./components/Invoice.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
+Vue.component('photo', require('./components/Photo.vue'));
 Vue.component('new-tow', require('./components/NewTow.vue'));
 
 const app = new Vue({

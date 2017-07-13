@@ -3,22 +3,18 @@
 @section('content')
 	
 	<div class="container">
-		
+		@include('partials._search')
         <div class="row">
         	<div class="col-md-12">
-        		
+        		<h2>Search Result: {{ Request::get('term') }}</h2>
+				
+				<new-tow></new-tow>	
         	</div>
         </div>
 		<div class="row">
-			<div class="col-md-3">
-				@include('partials._search')
-				
-			</div>
-			<div class="col-md-9">
+			<div class="col-md-12">
 							
-    			<h2>Tows</h2>
-				
-				<new-tow></new-tow>	
+    			
 				<div class="panel panel-default">
 
 					<div class="table-responsive">
@@ -28,9 +24,8 @@
 									<th>TOW NUMBER</th>
 									<th>TOWEE NAME</th>
 									<th>LOCATION</th>
-									<th>TOW DRIVER</th>
-									<th>TOW DATE</th>
-									<th>ACTIONS</th>
+									<th>Tow Date</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -48,15 +43,10 @@
 												{{ $tow->location }}
 											</td>
 											<td>
-												{{ $tow->user->name }}
-											</td>
-											<td>
 												{{ $tow->created_at->format('M d, Y') }}
 											</td>
 											<td>
 												<a href="/tows/{{ $tow->id }}/edit">Edit</a>
-
-												<a href="/tows/{{ $tow->id }}">View</a>
 											</td>
 										</tr>
 

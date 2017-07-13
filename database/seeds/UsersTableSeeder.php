@@ -17,14 +17,14 @@ class UsersTableSeeder extends Seeder
         	'name' => 'Markus Gray',
         	'email' => 'markusmgray@gmail.com',
         	'password' => bcrypt('Markus1990'),
-        	'user_type' => 'Admin'
+        	'user_type' => 'admin'
         ]);
 
         User::create([
         	'name' => 'Admin User',
         	'email' => 'example@test.com',
         	'password' => bcrypt('password'),
-        	'user_type' => 'Admin'
+        	'user_type' => 'admin'
         ]);
     }
 }

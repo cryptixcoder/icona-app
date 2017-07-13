@@ -11,9 +11,14 @@ class LotController extends Controller
     public function index(){
         $lots = Lot::all();
 
-    	return view('lots.index', [
-            'lots' => $lots
-        ]);
+    	if(request()->ajax()){
+            return response()->json(['lots' => $lots]);
+        }
+        else{
+            return view('lots.index', [
+                'lots' => $lots
+            ]);
+        }
     }
 
     public function create(){

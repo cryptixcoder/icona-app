@@ -30,4 +30,12 @@ class User extends Authenticatable
     public function tows(){
         return $this->hasMany(Tow::class);
     }
+
+    public function isType($type){
+        return $this->user_type == $type;
+    }
+
+    public function scopeType($query, $type){
+        return $query->where('user_type', $type);
+    }
 }

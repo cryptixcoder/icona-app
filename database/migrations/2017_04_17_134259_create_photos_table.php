@@ -19,6 +19,8 @@ class CreatePhotosTable extends Migration
             $table->string('filename');
             $table->text('notes')->nullable();
             $table->timestamps();
+
+            $table->foreign('tow_id')->references('id')->on('tows')->onDelete('cascade');
         });
     }
 

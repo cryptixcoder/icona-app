@@ -22,6 +22,7 @@
 									<th>Invoice #</th>
 									<th>Customer</th>
 									<th>Total</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -30,6 +31,10 @@
 									<td>010</td>
 									<td>Markus Gray</td>
 									<td>$300.00</td>
+									<td>
+										<a href="/invoices/1/edit">Edit</a>
+										<a href="/invoices/1/pdf">View PDF</a>
+									</td>
 								</tr>
 							</tbody>
 						</table>

@@ -5,6 +5,7 @@
 	<div class="container">
 		<div class="row">
 			<h2>Contracts</h2>
+			<a href="/contracts/create" class="btn btn-primary pull-right" style="margin-top: -46px;">Add Contract</a>
 			<div class="panel panel-default">
 				<table class="table table-striped table-bordered">
 					<thead>

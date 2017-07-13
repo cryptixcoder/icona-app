@@ -19,6 +19,8 @@ class CreateTowsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('parent_id')->unsigned()->nullable();
             $table->string('tow_number');
+            $table->string('vehicle_owner')->nullable();
+            $table->string('phone')->nullable();
             $table->string('location')->nullable();
             $table->string('make')->nullable();
             $table->string('model')->nullable();
@@ -31,9 +33,13 @@ class CreateTowsTable extends Migration
             $table->string('officer_id')->nullable();
             $table->string('complaint_id')->nullable();
             $table->integer('lot_id')->unsigned()->nullable();
+            $table->text('tags')->nullable();
             $table->float('latitude')->nullable();
             $table->float('longitude')->nullable();
+            $table->boolean('archive')->default(false);
             $table->timestamps();
+
+            $table->foreign('parent_id')->references('id')->on('tows')->onDelete('cascade');
         });
     }
 

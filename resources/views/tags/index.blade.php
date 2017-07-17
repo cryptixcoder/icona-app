@@ -18,7 +18,7 @@
 								<tr>
 									<th>ID</th>
 									<th>TAG</th>
-									<th></th>
+									<th>ACTIONS</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -34,7 +34,7 @@
 											</td>
 											<td>
 												<a href="/tags/{{ $tag->id }}/edit">Edit</a>
-
+												&nbsp;&nbsp;
 												<a href="/tags/{{ $tag->id }}/remove"
                                             onclick="if(confirm('Are you sure you want to delete')){ return true; }else{
                                             		return false;

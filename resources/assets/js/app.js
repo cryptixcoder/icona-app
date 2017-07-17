@@ -20,6 +20,8 @@ Vue.component('invoice', require('./components/Invoice.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('photo', require('./components/Photo.vue'));
 Vue.component('new-tow', require('./components/NewTow.vue'));
+Vue.component('archive', require('./components/Archive.vue'));
+Vue.component('release', require('./components/ReleaseComponent.vue'));
 
 const app = new Vue({
     el: '#app',

@@ -1,5 +1,6 @@
-<h2>Search</h2>
-  <form action="/search" method="get">
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form action="/search" method="get">
   <div class="row">
     <div class="col-md-12">
       <div class="form-group">
@@ -13,6 +14,7 @@
         <select name="by" class="form-control">
           <option @if(Request::get('by') == 'tow_number') selected @endif value="tow_number">Tow Number</option>
           <option @if(Request::get('by') == 'tags') selected @endif value="tags">Tags</option>
+          <option @if(Request::get('by') == 'vin') selected @endif value="vin">Vin</option>
         </select>
       </div>
     </div>
@@ -25,3 +27,6 @@
     </div>
   </div>
 </form>
+
+  </div>
+</div>

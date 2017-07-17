@@ -37,6 +37,8 @@ class CreateTowsTable extends Migration
             $table->float('latitude')->nullable();
             $table->float('longitude')->nullable();
             $table->boolean('archive')->default(false);
+            $table->boolean('released')->default(false);
+            $table->text('notes')->nullable();
             $table->timestamps();
 
             $table->foreign('parent_id')->references('id')->on('tows')->onDelete('cascade');

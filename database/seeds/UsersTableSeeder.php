@@ -21,10 +21,24 @@ class UsersTableSeeder extends Seeder
         ]);
 
         User::create([
-        	'name' => 'Admin User',
-        	'email' => 'example@test.com',
+        	'name' => 'Eric',
+        	'email' => 'eric@iaconacollision.com',
         	'password' => bcrypt('password'),
         	'user_type' => 'admin'
+        ]);
+
+        User::create([
+            'name' => 'Joe',
+            'email' => 'joe@iaconacollision.com',
+            'password' => bcrypt('password'),
+            'user_type' => 'admin'
+        ]);
+
+        User::create([
+            'name' => 'Angel',
+            'email' => 'angel@iaconacollision.com',
+            'password' => bcrypt('password'),
+            'user_type' => 'admin'
         ]);
     }
 }

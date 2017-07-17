@@ -33,6 +33,18 @@
 				</div>
 
 				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label>Reason</label>
+							<select v-model="reason_id" id="" class="form-control">
+								<option value="">Choose Reason</option>
+								<option v-for="reason in reasons" :value="reason.id">{{ reason.name }}</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Vehicle Owner Name</label>
@@ -190,6 +202,13 @@
 				
 				<div class="row">
 					<div class="col-md-12">
+						<label>Notes</label>
+						<textarea style="resize: none;" v-model="notes" cols="30" rows="10" class="form-control"></textarea>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
 						<h3>Photos <a href="#" @click.prevent="attachPhotos()" class="add-photo-btn"><small>+ Add Photos</small></a></h3>
 						<input type="file" class="attached-photos" multiple @change="onPhotosAttached()" ref="photos">
 						
@@ -206,6 +225,8 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="form-group">
+							<archive :towid="towid"></archive>
+
 							<button class="btn btn-primary pull-right" @click.prevent="updateTowRecord()" >Save</button>
 						</div>
 					</div>
@@ -264,7 +285,10 @@
 				tlist: [],
 				valid: true,
 				timer: null,
-				lot_id: ''
+				lot_id: '',
+				reasons: [],
+				reason_id: null,
+				notes: ""
 			}
 		},
 
@@ -274,6 +298,7 @@
 			this.loadTags();
 			this.loadLots();
 			this.loadTowRecord();
+			this.getReasons();
 			
 			this.initAutoSave();
 
@@ -337,6 +362,8 @@
 					 	this.children = tow.children;
 					 	this.photos = tow.photos;
 					 	this.lot_id = parseInt(tow.lot_id);
+					 	this.reason_id = parseInt(tow.reason_id);
+					 	this.notes = tow.notes;
 
 					 	var $this = this;
 					 	
@@ -373,7 +400,9 @@
 					officer_id: this.officer_id,
 					complaint_number: this.complaint_number,
 					tags: this.tags,
-					lot_id: this.lot_id
+					lot_id: this.lot_id,
+					reason_id: this.reason_id,
+					notes: this.notes
 				})
 				.then((response) => {
 				
@@ -498,6 +527,13 @@
 				axios.get('/tows/' + this.id + '/valid')
 					 .then((response) => {
 					 	this.valid = response.data.tow_validated
+					 });
+			},
+
+			getReasons(){
+				axios.get('/reasons')
+					 .then((response) => {
+					 	this.reasons = response.data;
 					 });
 			}
 		}

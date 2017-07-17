@@ -44,8 +44,7 @@ class ContractController extends Controller
     public function update(Request $request, Contract $contract){
         $contract->update($request->all());
 
-        return redirect()
-                ->back();
+        return redirect('/contracts');
     }
 
     public function destroy(Request $request, Contract $contract){

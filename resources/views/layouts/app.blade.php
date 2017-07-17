@@ -47,6 +47,7 @@
                     @if(Auth::user()->isType('admin'))
                        <li><a href="/contracts">Contracts</a></li>
                        <li><a href="/lots">Lots</a></li>
+                       <li><a href="/reasons">Reasons</a></li>
                        <li><a href="/tags">Tags</a></li>
                     @endif
                        <li><a href="/tows">Tows</a></li>
@@ -70,6 +71,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="/account">Account Settings</a></li>
+                                    <li><a href="/help">Help</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

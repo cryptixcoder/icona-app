@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Image;
 use File;
 use Storage;
 use App\Tow;
@@ -16,9 +17,13 @@ class UploadController extends Controller
 
     	$file = storage_path() . "/uploads/" . $photo->filename;
 
-    	$s3Url = Storage::disk('s3')->put($photo->filename, fopen($file, 'r+'));
+        Image::make($file)->encode('jpg')->fit(500, 500, function($c){
+            $c->upsize();
+        })->save($file);
 
-    	File::delete($file);
+    	if(Storage::disk('s3')->put($photo->filename, fopen($file, 'r+'))){
+    		File::delete($file);
+    	}
 
     	return response()->json($photo, 200);
     }

@@ -46,6 +46,8 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('/tows/{tow}/photos', 'PhotoController@store');
 	Route::post('/tows/{tow}/children', 'TowController@add_child');
 	Route::get('/tows/{tow}/edit', 'TowController@edit');
+	Route::post('/tows/{tow}/archive', 'TowController@archive');
+	Route::post('/tows/{tow}/release', 'TowController@release');
 	Route::put('/tows/{tow}', 'TowController@update');
 	Route::delete('/tows/{tow}', 'TowController@destroy');
 
@@ -80,7 +82,12 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('/tags/{tag}/edit', 'TagController@update');
 	Route::get('/tags/{tag}/remove', 'TagController@destroy');
 
-
+	Route::get('/reasons', 'ReasonController@index');
+	Route::get('/reasons/create', 'ReasonController@create');
+	Route::post('/reasons/create', 'ReasonController@store');
+	Route::get('/reasons/{reason}', 'ReasonController@show');
+	Route::get('/reasons/{reason}/edit', 'ReasonController@edit');
+	Route::post('/reasons/{reason}/edit', 'ReasonController@update');
 
 });
 

@@ -34,7 +34,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                      <h3 align="center">Admins</h3>
-                    <h5 align="center">10</h5>
+                    <h5 align="center">{{ $admins }}</h5>
                 </div>
             </div>
         </div>

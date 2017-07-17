@@ -3,18 +3,16 @@
 @section('content')
 	
 	<div class="container">
-		@include('partials._search')
-        <div class="row">
-        	<div class="col-md-12">
-        		<h2>Search Result: {{ Request::get('term') }}</h2>
-				
-				<new-tow></new-tow>	
+
+		<div class="row">
+        	<div class="col-md-4 col-md-offset-8">
+        		@include('partials._search')
         	</div>
         </div>
 		<div class="row">
 			<div class="col-md-12">
 							
-    			
+    			<h2>Search Result: {{ Request::get('term') }}</h2>
 				<div class="panel panel-default">
 
 					<div class="table-responsive">
@@ -24,8 +22,8 @@
 									<th>TOW NUMBER</th>
 									<th>TOWEE NAME</th>
 									<th>LOCATION</th>
-									<th>Tow Date</th>
-									<th></th>
+									<th>TOW DATE</th>
+									<th>ACTIONS</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -47,6 +45,10 @@
 											</td>
 											<td>
 												<a href="/tows/{{ $tow->id }}/edit">Edit</a>
+												&nbsp;&nbsp;
+												<a href="/tows/{{ $tow->id }}">View</a>
+												{{-- &nbsp;&nbsp;
+												<a href="/tows/{{ $tow->id }}?download=1">Download</a> --}}
 											</td>
 										</tr>
 
@@ -54,7 +56,7 @@
 								@else
 									<tr>
 										<td colspan="6">
-											<p align="center">You currently have no tows. <a href="/tows/create">Create a tow</a></p>
+											<p align="center">No Results</p>
 										</td>
 									</tr>
 								@endif

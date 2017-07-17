@@ -28,7 +28,11 @@ class Tow extends Model
         'phone',
         'location',
         'tags',
-        'lot_id'
+        'lot_id',
+        'archived',
+        'reason_id',
+        'released',
+        'notes'
     ];
 
     protected $appends = [
@@ -69,5 +73,13 @@ class Tow extends Model
 
     public function scopeArchived($query){
         return $query->where('archived', true);
+    }
+
+    public function lot(){
+        return $this->belongsTo(Lot::class);
+    }
+
+    public function reason(){
+        return $this->belongsTo(Reason::class);
     }
 }

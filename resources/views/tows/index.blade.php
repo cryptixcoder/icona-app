@@ -5,16 +5,12 @@
 	<div class="container">
 		
         <div class="row">
-        	<div class="col-md-12">
-        		
+        	<div class="col-md-4 col-md-offset-8">
+        		@include('partials._search')
         	</div>
         </div>
 		<div class="row">
-			<div class="col-md-3">
-				@include('partials._search')
-				
-			</div>
-			<div class="col-md-9">
+			<div class="col-md-12">
 							
     			<h2>Tows</h2>
 				
@@ -29,7 +25,7 @@
 									<th>TOWEE NAME</th>
 									<th>LOCATION</th>
 									<th>TOW DRIVER</th>
-									<th>TOW DATE</th>
+									<th>TOW ON</th>
 									<th>ACTIONS</th>
 								</tr>
 							</thead>
@@ -51,12 +47,14 @@
 												{{ $tow->user->name }}
 											</td>
 											<td>
-												{{ $tow->created_at->format('M d, Y') }}
+												{{ $tow->created_at->format('M d, Y h:i a') }}
 											</td>
 											<td>
 												<a href="/tows/{{ $tow->id }}/edit">Edit</a>
-
+												&nbsp;&nbsp;
 												<a href="/tows/{{ $tow->id }}">View</a>
+												{{-- &nbsp;&nbsp;
+												<a href="/tows/{{ $tow->id }}?download=1">Download</a> --}}
 											</td>
 										</tr>
 

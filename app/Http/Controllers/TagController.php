@@ -45,7 +45,7 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag){
     	$tag->update($request->all());
 
-    	return response()->json(null, 200);
+    	return redirect('/tags');
     }
 
     public function destroy(Request $request, Tag $tag){

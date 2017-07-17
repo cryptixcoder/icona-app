@@ -17,7 +17,10 @@ class SearchController extends Controller
     	}
     	elseif($by == "tags"){
     		$tows = Tow::parents()->where('tags', 'like', '%' . $term . '%')->get();
-    	}    	
+    	}
+        elseif($by == "vin"){
+            $tows = Tow::parents()->where('vin', 'like', '%' . $term . '%')->get();
+        }  	
 
     	return view('search', [
     		'tows' => $tows

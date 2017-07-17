@@ -27,19 +27,31 @@ class TowController extends Controller
         ]);
     }
 
-    public function show(Tow $tow){
+    public function show(Request $request, Tow $tow){
         $tow->load(['children','photos']);
         
         if(request()->ajax()){
             return response()->json($tow);
         }
         else{
-            $pdf = App::make('dompdf.wrapper');
-            $pdf->loadView('tows.show', [
-                'tow' => $tow
-            ]);
-    
-            return $pdf->download($tow->tow_number . ".pdf");
+            if($request->has('download')){
+                $pdf = App::make('dompdf.wrapper');
+                $pdf->loadView('tows.show', [
+                    'tow' => $tow
+                ]);
+        
+                return $pdf->download($tow->tow_number . ".pdf");
+            }
+            elseif($request->has('viewphotos')){
+                return view('tows.photos', [
+                    'tow' => $tow
+                ]);
+            }
+            else{
+                return view('tows.show', [
+                    'tow' => $tow
+                ]);
+            }
         }
     }
 
@@ -91,7 +103,8 @@ class TowController extends Controller
             'vehicle_owner' => $request->vehicle_owner,
             'location' => $request->location,
             'lot_id' => $request->lot_id,
-            'tags' => implode(",",$request->tags)
+            'reason_id' => $request->reason_id,
+            'tags' => ($request->tags) ? implode(",",$request->tags) : ""
         ]);
 
         return response()->json([], 200);
@@ -131,5 +144,41 @@ class TowController extends Controller
         return response()->json([
             'tow_validated' => $tow->photos()->count() >= 5
         ]);
+    }
+
+    public function archive(Request $request, Tow $tow){
+
+        $archive = false;
+
+        if(!$tow->archived){
+            $archive = true;
+        }
+
+        $tow->update([
+            'archived' => $archive
+        ]);
+
+        return response()->json([
+            'archived' => $archive
+        ]);
+
+    }
+
+    public function release(Request $request, Tow $tow){
+
+        $release = false;
+
+        if(!$tow->released){
+            $release = true;
+        }
+
+        $tow->update([
+            'released' => $release
+        ]);
+
+        return response()->json([
+            'released' => $release
+        ]);
+
     }
 }

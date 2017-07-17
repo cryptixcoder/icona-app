@@ -47,6 +47,8 @@
 					navigator.geolocation.getCurrentPosition((position) => {
 						$this.latitude = position.coords.latitude;
 						$this.longitude = position.coords.longitude;
+
+						$this.reverseGeocodeLookup();
 					});
 				}
 			}
@@ -66,7 +68,9 @@
 				selectedContract: "",
 				contracts: [],
 				latitude: 0,
-				longitude: 0
+				longitude: 0,
+				location: "",
+				googleKey: ""
 			}
 		},
 
@@ -86,10 +90,18 @@
 				axios.post('/tows/create', {
 					contract_id: this.selectedContract,
 					latitude: this.latitude,
-					longitude: this.longitude
+					longitude: this.longitude,
+					location: this.location
 				}).then((res) => {
 					window.location = '/tows/' + res.data.tow_id + '/edit';
 				});
+			},
+
+			reverseGeocodeLookup(){
+				axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+ this.latitude +','+ this.longitude +'&key=' + this.googleKey)
+					.then((response) => {
+						this.location = response.data.results[0].formatted_address;
+					});
 			}
 		}
 

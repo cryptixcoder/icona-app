@@ -16,7 +16,11 @@
 		      <div class="modal-body">
 				<div class="form-group">
 					<div class="form-group">
-						<textarea v-model="notes" class="form-control"></textarea>
+						<img :src="fullpath" alt="">
+					</div>
+					<div class="form-group">
+						<label>Notes</label>
+						<textarea v-model="notes" style="resize: none;" cols="30" rows="10" class="form-control"></textarea>
 					</div>
 				</div>
 		      </div>

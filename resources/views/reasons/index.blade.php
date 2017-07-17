@@ -3,16 +3,14 @@
 @section('content')
 
 	<div class="container">
-	<div class="row">
-		<div class="col-md-12" style="clearfix: both;">
-			<h3>Users</h3>
-				<a href="/users/create" class="btn btn-primary pull-right" style="margin-top: -46px;">Add User</a>
-		</div>
-	</div>
 		<div class="row">
-			
 			<div class="col-md-12">
-
+				<h2>Reasons</h2>
+				<a href="/reasons/create" class="btn btn-primary pull-right" style="margin-top: -46px;">New Reason</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="table-responsive">
 						<table class="table table-striped table-bordered">
@@ -20,35 +18,32 @@
 								<tr>
 									<th>ID</th>
 									<th>NAME</th>
-									<th>TYPE</th>
 									<th>ACTIONS</th>
 								</tr>
 							</thead>
 							<tbody>
-								@if($users->count())
-									@foreach($users as $user)
+								@if($reasons->count())
+									@foreach($reasons as $reason)
 										
 										<tr>
 											<td>
-												{{ $user->id }}
+												{{ $reason->id }}
 											</td>
 											<td>
-												{{ $user->name }}
+												{{ $reason->name }}
 											</td>
 											<td>
-												{{ $user->user_type }}
-											</td>
-											<td>
-												<a href="/users/{{ $user->id }}/edit">Edit</a>
+												<a href="/reasons/{{ $reason->id }}/edit">Edit</a>
+								
+                                
 											</td>
 										</tr>
-
 
 									@endforeach
 								@else
 									<tr>
-										<td colspan="4">
-											<p align="center">You currently have no users. <a href="/users/create">Create a user</a></p>
+										<td colspan="3">
+											<p align="center">You currently have no reasons. <a href="/reasons/create">Create a reason</a></p>
 										</td>
 									</tr>
 								@endif
@@ -56,7 +51,6 @@
 						</table>
 					</div>
 				</div>
-				
 			</div>
 		</div>
 	</div>

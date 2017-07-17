@@ -36,7 +36,7 @@ class CreateTowsTable extends Migration
             $table->text('tags')->nullable();
             $table->float('latitude')->nullable();
             $table->float('longitude')->nullable();
-            $table->boolean('archive')->default(false);
+            $table->boolean('archived')->default(false);
             $table->boolean('released')->default(false);
             $table->text('notes')->nullable();
             $table->timestamps();

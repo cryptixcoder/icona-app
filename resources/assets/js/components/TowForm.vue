@@ -496,7 +496,8 @@
 					photoObject.filename = response.data.filename;
 					photoObject.fullpath = response.data.fullpath;
 					eventBus.$emit('finished', photoObject);
-				}, () => {
+				}, (err) => {
+					console.log(err);
 				 	eventBus.$emit('failed', photoObject);
 				});
 			},			

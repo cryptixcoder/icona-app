@@ -7,6 +7,7 @@ use File;
 use Storage;
 use App\Tow;
 use App\Photo;
+use App\Jobs\UploadImage;
 use Illuminate\Http\Request;
 
 class UploadController extends Controller
@@ -15,15 +16,7 @@ class UploadController extends Controller
     	
     	$request->file('photo')->move(storage_path() . "/uploads", $photo->filename);
 
-    	$file = storage_path() . "/uploads/" . $photo->filename;
-
-        Image::make($file)->encode('jpg')->fit(500, 500, function($c){
-            $c->upsize();
-        })->save($file);
-
-    	if(Storage::disk('s3')->put($photo->filename, fopen($file, 'r+'))){
-    		File::delete($file);
-    	}
+        $this->dispatch(new UploadImage($photo));
 
     	return response()->json($photo, 200);
     }

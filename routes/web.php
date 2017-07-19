@@ -24,6 +24,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/search', 'SearchController@index');
+Route::get('/help', 'HelpController@index');
 
 
 Route::group(['middleware' => 'auth'], function(){

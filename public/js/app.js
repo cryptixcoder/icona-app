@@ -26535,7 +26535,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 				photoObject.fullpath = response.data.fullpath;
 				__WEBPACK_IMPORTED_MODULE_0__events_js__["a" /* default */].$emit('finished', photoObject);
 			}, function (err) {
-				console.log(err);
+				alert(err);
 				__WEBPACK_IMPORTED_MODULE_0__events_js__["a" /* default */].$emit('failed', photoObject);
 			});
 		},

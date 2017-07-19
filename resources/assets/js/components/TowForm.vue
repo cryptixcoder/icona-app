@@ -271,7 +271,7 @@
 				vin: "",
 				mileage: "",
 				officer_id: "",
-				complaint_number: "",
+				complaint_id: "",
 				tags: "",
 				interval: null,
 				message: null,
@@ -357,7 +357,7 @@
 					 	this.vin = tow.vin;
 					 	this.mileage = tow.mileage;
 					 	this.officer_id = tow.officer_id;
-					 	this.complaint_number = tow.complaint_number;
+					 	this.complaint_id = tow.complaint_id;
 					 	this.tags =  (tow.tags != null) ? tow.tags.split(',') : "" ;
 					 	this.children = tow.children;
 					 	this.photos = tow.photos;
@@ -398,7 +398,7 @@
 					vin: this.vin,
 					mileage: this.mileage,
 					officer_id: this.officer_id,
-					complaint_number: this.complaint_number,
+					complaint_id: this.complaint_id,
 					tags: this.tags,
 					lot_id: this.lot_id,
 					reason_id: this.reason_id,

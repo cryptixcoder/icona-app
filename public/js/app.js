@@ -26321,7 +26321,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 			vin: "",
 			mileage: "",
 			officer_id: "",
-			complaint_number: "",
+			complaint_id: "",
 			tags: "",
 			interval: null,
 			message: null,
@@ -26403,7 +26403,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 				_this3.vin = tow.vin;
 				_this3.mileage = tow.mileage;
 				_this3.officer_id = tow.officer_id;
-				_this3.complaint_number = tow.complaint_number;
+				_this3.complaint_id = tow.complaint_id;
 				_this3.tags = tow.tags != null ? tow.tags.split(',') : "";
 				_this3.children = tow.children;
 				_this3.photos = tow.photos;
@@ -26441,7 +26441,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 				vin: this.vin,
 				mileage: this.mileage,
 				officer_id: this.officer_id,
-				complaint_number: this.complaint_number,
+				complaint_id: this.complaint_id,
 				tags: this.tags,
 				lot_id: this.lot_id,
 				reason_id: this.reason_id,

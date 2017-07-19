@@ -64,7 +64,7 @@ class Tow extends Model
     }
 
     public function getTowTimeAttribute(){
-        return $this->created_at->format('h:m a');
+        return $this->created_at->format('h:i a');
     }
 
     public function scopeActive($query){

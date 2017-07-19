@@ -210,7 +210,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h3>Photos <a href="#" @click.prevent="attachPhotos()" class="add-photo-btn"><small>+ Add Photos</small></a></h3>
-						<input type="file" class="attached-photos" accept="image/*" multiple @change="onPhotosAttached()" ref="photos">
+						<input type="file" class="attached-photos" accept="image/*" capture="camera"  multiple @change="onPhotosAttached()" ref="photos">
 						
 						<hr>
 					</div>

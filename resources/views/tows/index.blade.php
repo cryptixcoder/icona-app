@@ -26,6 +26,9 @@
 									<th>LOCATION</th>
 									<th>TOW DRIVER</th>
 									<th>TOW ON</th>
+									@if(Auth::user()->isType('admin'))
+									<th>RELEASED</th>
+									@endif
 									<th>ACTIONS</th>
 								</tr>
 							</thead>
@@ -49,6 +52,11 @@
 											<td>
 												{{ $tow->created_at->format('M d, Y h:i a') }}
 											</td>
+											@if(Auth::user()->isType('admin'))
+											<td>
+												<release towid="{{ $tow->id }}" ></release>
+											</td>
+											@endif
 											<td>
 												<a href="/tows/{{ $tow->id }}/edit">Edit</a>
 												&nbsp;&nbsp;

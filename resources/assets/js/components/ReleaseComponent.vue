@@ -1,5 +1,5 @@
 <template>
-	<button class="btn pull-left" :class="classObject" @click.prevent="toggleRelease()" >{{ releasedText }}</button>
+	<button class="btn pull-left btn-default" :class="classObject" @click.prevent="toggleRelease()" >{{ releasedText }}</button>
 </template>
 <script>
 	export default {

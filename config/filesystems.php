@@ -60,7 +60,7 @@ return [
             'key' => env('AWS_KEY'),
             'secret' => env('AWS_SECRET'),
             'region' => 'us-east-1',
-            'bucket' => 'imgs.mytube.com',
+            'bucket' => 'icona-images',
         ],
 
     ],

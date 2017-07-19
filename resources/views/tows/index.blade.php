@@ -69,9 +69,15 @@
 									@endforeach
 								@else
 									<tr>
-										<td colspan="6">
-											<p align="center">You currently have no tows. <a href="/tows/create">Create a tow</a></p>
-										</td>
+										@if(Auth::user()->isType('admin'))
+											<td colspan="7">
+												<p align="center">You currently have no tows. <a href="/tows/create">Create a tow</a></p>
+											</td>
+										@else
+											<td colspan="6">
+												<p align="center">You currently have no tows. <a href="/tows/create">Create a tow</a></p>
+											</td>
+										@endif
 									</tr>
 								@endif
 							</tbody>

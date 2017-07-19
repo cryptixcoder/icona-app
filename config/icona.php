@@ -3,7 +3,7 @@
 return [
 
     'buckets' => [
-        'photos' => 'https://s3.amazonaws.com/imgs.mytube.com/',
+        'photos' => 'https://s3.amazonaws.com/icona-images/',
     ],
 
 ];

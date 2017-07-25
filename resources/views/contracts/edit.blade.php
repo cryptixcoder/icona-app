@@ -21,6 +21,10 @@
 								<textarea name="description" cols="30" rows="10" class="form-control">{{ $contract->description }}</textarea>
 							</div>
 							<div class="form-group">
+								<label>Start Tow Count</label>
+								<input type="text" name="tow_start_count" class="form-control" value="{{ $contract->tow_start_count }}">
+							</div>
+							<div class="form-group">
 								<label>Contract Prefix</label>
 								<input type="text" name="prefix" class="form-control" value="{{ $contract->prefix }}" />
 							</div>

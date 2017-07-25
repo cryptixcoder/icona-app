@@ -9,7 +9,8 @@ class Contract extends Model
     protected $fillable = [
     	'name',
     	'description',
-    	'prefix'
+    	'prefix',
+    	'tow_start_count'
     ];
 
 }

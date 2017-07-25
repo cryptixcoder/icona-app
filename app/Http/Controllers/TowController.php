@@ -60,16 +60,29 @@ class TowController extends Controller
 
         $contract = null;
         $prefix = "000";
-
+        $count = 0;
 
         if($request->contract_id){
             $contract = Contract::find($request->contract_id);
+            $contractCount = $contract->tow_start_count;
+            
+            $contract->update([
+                'tow_start_count' => $contractCount + 1
+            ]);
+
             $prefix = $contract->prefix;
+
+            $count = $contractCount;
+        
         }
+        else{
+            $count = (Tow::parents()->where('tow_number', 'like', '000-%')->count() + 1);
+        }
+
 
         $tow = $user->tows()->create([
             'contract_id' => $request->contract_id,
-            'tow_number' => $prefix . "-" . (Tow::count() + 1),
+            'tow_number' => $prefix . "-" .$count,
             'latitude' => ($request->latitude) ? $request->latitude : null,
             'longitude' => ($request->longitude) ? $request->longitude : null
         ]);

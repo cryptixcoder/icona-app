@@ -9,20 +9,18 @@ class ContractController extends Controller
 {
     public function index(Request $request){
 
-       $contracts = Contract::all();
+      $contracts = Contract::all();
        
-       if($request->list == true){
-          return response()->json([
-            'contracts' => $contracts
-          ]);
-       }
-       else{
-
-
+      if($request->list == true){
+        return response()->json([
+          'contracts' => $contracts
+        ]);
+      }
+      else{
         return view('contracts.index', [
             'contracts' => $contracts
         ]);
-       }
+      }
     }
 
     public function create(){

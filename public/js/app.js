@@ -26287,6 +26287,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -47738,6 +47739,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": ""
     }
   }, [_vm._v("Select State")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "no-tags"
+    }
+  }, [_vm._v("No Tags")]), _vm._v(" "), _c('option', {
     attrs: {
       "value": "AL"
     }

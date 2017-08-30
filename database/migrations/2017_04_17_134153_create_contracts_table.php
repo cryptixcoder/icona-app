@@ -15,7 +15,7 @@ class CreateContractsTable extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('name');
+            $table->string('name');
             $table->text('description')->nullable();
             $table->integer('tow_start_count')->default(1);
             $table->string('prefix');

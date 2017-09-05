@@ -63,7 +63,7 @@
 						</tr>
 						<tr>
 							<td style="width: 50%;">Complaint ID:</td>
-							<td>{{ $tow->complaint_number }}</td>
+							<td>{{ $tow->complaint_id }}</td>
 						</tr>
 						<tr>
 							<td style="width: 50%;">Lot:</td>

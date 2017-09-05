@@ -47456,20 +47456,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.complaint_number),
-      expression: "complaint_number"
+      value: (_vm.complaint_id),
+      expression: "complaint_id"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text"
     },
     domProps: {
-      "value": (_vm.complaint_number)
+      "value": (_vm.complaint_id)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.complaint_number = $event.target.value
+        _vm.complaint_id = $event.target.value
       }
     }
   })])]), _vm._v(" "), _c('div', {

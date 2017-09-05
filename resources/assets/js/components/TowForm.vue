@@ -14,7 +14,7 @@
 					<div class="col-md-4">
 						<div class="form-group">
 							<label>Complaint Number</label>
-							<input type="text" class="form-control" v-model="complaint_number" />
+							<input type="text" class="form-control" v-model="complaint_id" />
 						</div>
 					</div>
 					<div class="col-md-4">

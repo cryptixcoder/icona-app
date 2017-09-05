@@ -110,7 +110,7 @@ class TowController extends Controller
             'vin' => $request->vin,
             'mileage' => $request->mileage,
             'officer_id' => $request->officer_id,
-            'complaint_number' => $request->complaint_number,
+            'complaint_id' => $request->complaint_id,
             'lot_id' => $request->lot_id,
             'phone' => $request->phone,
             'vehicle_owner' => $request->vehicle_owner,
@@ -129,7 +129,7 @@ class TowController extends Controller
         $child = $tow->children()->create([
             'user_id' => $tow->user_id,
             'officer_id' => $tow->officer_id,
-            'complaint_number' => $tow->complaint_number,
+            'complaint_id' => $tow->complaint_id,
             'vehicle_owner' => $tow->vehicle_owner,
             'tow_number' => $tow->tow_number . '-' . ($tow->children()->count() + 1),
             'location' => $tow->location,

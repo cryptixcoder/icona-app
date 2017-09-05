@@ -21,7 +21,6 @@ class Tow extends Model
         'vin',
         'mileage',
         'officer_id',
-        'complaint_id',
         'lot_id',
         'complaint_id',
         'vehicle_owner',

@@ -23,7 +23,7 @@ class Tow extends Model
         'officer_id',
         'complaint_id',
         'lot_id',
-        'complaint_number',
+        'complaint_id',
         'vehicle_owner',
         'phone',
         'location',

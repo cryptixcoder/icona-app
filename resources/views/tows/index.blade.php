@@ -82,11 +82,12 @@
 								@endif
 							</tbody>
 						</table>
-
+						{{ $tows->links() }}									
 					
 					</div>
 					
 				</div>
+				
 			</div>
 		</div>
 	</div>

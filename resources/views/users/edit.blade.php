@@ -31,13 +31,13 @@
 									@endforeach
 								</select>
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label>Status</label>
-								<select name="type" id="" class="form-control">
+								<select name="status" id="" class="form-control">
 									<option value="1">Active</option>
 									<option value="0">Deactive</option>
 								</select>
-							</div>
+							</div> -->
 							<div class="form-group">
 								<button class="btn btn-primary pull-right">Save User</button>
 							</div>

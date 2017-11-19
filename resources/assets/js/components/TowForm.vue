@@ -267,7 +267,7 @@
 				year: "",
 				vehicle_color: "",
 				time: "",
-				state: "",
+				state: "PA",
 				tag_number: "",
 				vin: "",
 				mileage: "",

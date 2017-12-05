@@ -61,6 +61,15 @@
 												<a href="/tows/{{ $tow->id }}/edit">Edit</a>
 												&nbsp;&nbsp;
 												<a href="/tows/{{ $tow->id }}">View</a>
+												&nbsp;&nbsp;
+												<a href="#"
+													onclick="event.preventDefault(); document.getElementById('delete-form-{{ $tow->id }}').submit();">
+													 Delete
+												</a>
+												<form action="/tows/{{ $tow->id }}/delete" id="delete-form-{{ $tow->id }}" method="post"  style="display: none;">
+													{{ csrf_field() }}
+													{{ method_field('DELETE') }}
+												</form>
 												{{-- &nbsp;&nbsp;
 												<a href="/tows/{{ $tow->id }}?download=1">Download</a> --}}
 											</td>

@@ -18,6 +18,7 @@ class TowController extends Controller
         else{
             $tows = Tow::parents()
                     ->active()
+                    ->last_updated()
                     ->paginate(10);
         }
 
@@ -84,7 +85,8 @@ class TowController extends Controller
             'contract_id' => $request->contract_id,
             'tow_number' => $prefix . "-" .$count,
             'latitude' => ($request->latitude) ? $request->latitude : null,
-            'longitude' => ($request->longitude) ? $request->longitude : null
+            'longitude' => ($request->longitude) ? $request->longitude : null,
+            'state' => "PA"
         ]);
 
         return response()->json([

@@ -74,6 +74,10 @@ class Tow extends Model
         return $query->where('archived', true);
     }
 
+    public function scopeLastUpdated($query){
+        return $query->orderBy('updated_at', 'desc');
+    }
+
     public function lot(){
         return $this->belongsTo(Lot::class);
     }

@@ -18,7 +18,7 @@ class TowController extends Controller
         else{
             $tows = Tow::parents()
                     ->active()
-                    ->last_updated()
+                    ->lastUpdated()
                     ->paginate(10);
         }
 

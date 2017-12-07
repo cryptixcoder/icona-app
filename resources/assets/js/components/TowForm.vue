@@ -43,21 +43,6 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group">
-							<label>Vehicle Owner Name</label>
-							<input type="text" class="form-control" v-model="vehicle_owner"  />
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="form-group">
-							<label>Phone Number</label>
-							<input type="text" class="form-control" v-model="phone"  />
-						</div>
-					</div>
-				</div>
 				
 				<div class="row">
 					<div class="col-md-12">
@@ -177,6 +162,22 @@
 						</div>
 					</div>
 				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Vehicle Owner Name</label>
+							<input type="text" class="form-control" v-model="vehicle_owner"  />
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Phone Number</label>
+							<input type="text" class="form-control" v-model="phone"  />
+						</div>
+					</div>
+				</div>
+				
 				<div class="row">
 					<div class="col-md-12">
 						<div class="form-group">

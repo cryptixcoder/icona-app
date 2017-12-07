@@ -77,6 +77,10 @@
 							<td style="width: 50%;">Tags</td>
 							<td>{{ $tow->tags }}</td>
 						</tr>
+						<tr>
+							<td style="width:50%;">Notes</td>
+							<td>{{ $tow->notes  }}</td>
+						</tr>
 					</table>
 				</div>
 			</div>

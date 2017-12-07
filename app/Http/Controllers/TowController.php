@@ -119,7 +119,8 @@ class TowController extends Controller
             'location' => $request->location,
             'lot_id' => $request->lot_id,
             'reason_id' => $request->reason_id,
-            'tags' => ($request->tags) ? implode(",",$request->tags) : ""
+            'tags' => ($request->tags) ? implode(",",$request->tags) : "",
+            "notes" => $request->notes
         ]);
 
         return response()->json([], 200);

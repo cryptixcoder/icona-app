@@ -11,6 +11,7 @@ class Tow extends Model
     
     protected $fillable = [
         'user_id',
+        'contract_id',
         'tow_number',
         'make',
         'model',
@@ -76,6 +77,10 @@ class Tow extends Model
 
     public function scopeLastUpdated($query){
         return $query->orderBy('updated_at', 'desc');
+    }
+
+    public function scopeContract($query, $id){
+        return $query->where('contract_id', $id);
     }
 
     public function lot(){

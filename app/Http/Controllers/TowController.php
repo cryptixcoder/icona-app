@@ -10,22 +10,50 @@ use App\Contract;
 
 class TowController extends Controller
 {
-    public function index(){
-        
-        if(request()->user()->user_type == "driver"){
-            $tows = request()->user()->tows()->parents()->active()->paginate(10);
+    public function index(Request $request){
+
+        if($request->has('contract')){  
+            $contract = Contract::findOrFail($request->contract);
+            
+            if(request()->user()->user_type == "driver"){
+                $tows = request()
+                        ->user()
+                        ->tows()
+                        ->parents()
+                        ->active()
+                        ->contract($request->contract)
+                        ->lastUpdated()
+                        ->paginate(10);
+            }
+            else{
+                $tows = Tow::parents()
+                        ->active()
+                        ->contract($request->contract)
+                        ->lastUpdated()
+                        ->paginate(10);
+            }
+
+            return view('tows.contract', [
+                'tows' => $tows,
+                'contract' => $contract
+            ]);
         }
         else{
-            $tows = Tow::parents()
-                    ->active()
-                    ->lastUpdated()
-                    ->paginate(10);
+            if(request()->user()->user_type == "driver"){
+                $tows = request()->user()->tows()->parents()->active()->paginate(10);
+            }
+            else{
+                $tows = Tow::parents()
+                        ->active()
+                        ->lastUpdated()
+                        ->paginate(10);
+            }
+    
+    
+            return view('tows.index', [
+                'tows' => $tows
+            ]);
         }
-
-
-        return view('tows.index', [
-            'tows' => $tows
-        ]);
     }
 
     public function show(Request $request, Tow $tow){
@@ -54,6 +82,46 @@ class TowController extends Controller
                 ]);
             }
         }
+    }
+
+    public function viewPrintableContracts(Request $request){
+        if($request->has('contract')){  
+            $contract = Contract::findOrFail($request->contract);
+            
+            if(request()->user()->user_type == "driver"){
+                $tows = request()
+                        ->user()
+                        ->tows()
+                        ->parents()
+                        ->active()
+                        ->contract($request->contract)
+                        ->lastUpdated()
+                        ->get();
+            }
+            else{
+                $tows = Tow::parents()
+                        ->active()
+                        ->contract($request->contract)
+                        ->lastUpdated()
+                        ->get();
+            }
+
+            return view('tows.selectablecontract', [
+                'tows' => $tows,
+                'contract' => $contract
+            ]);
+        }
+        else{
+            abort(404);
+        }
+    }
+
+    public function renderPrintableContracts(Request $request){
+       $tows = Tow::find($request->tows);
+
+       return view('tows.printall', [
+            'tows' => $tows
+       ]);
     }
 
     public function store(Request $request){

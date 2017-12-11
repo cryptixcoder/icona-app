@@ -30,6 +30,8 @@
 											</td>
 											<td>
 												<a href="/contracts/{{ $contract->id }}/edit">Edit</a>
+												&nbsp;&nbsp;&nbsp;
+												<a href="/tows?contract={{ $contract->id }}">View Tows</a>
 											</td>
 										</tr>
 

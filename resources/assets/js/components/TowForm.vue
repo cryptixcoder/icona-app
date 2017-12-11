@@ -193,12 +193,16 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="form-group">
-							<label>Tags</label>
-							<select multiple name="tags" class="form-control" ref="tgs" >
+							<label style="width:100%;">Tags</label>
+							<label class="checkbox-inline" v-for="t in tlist">
+								<input type="checkbox" v-model="tags" :id="t.tag" :value="t.tag"> {{ t.tag }}
+							</label>
+
+							<!--<select multiple name="tags" class="form-control" ref="tgs" >
 								<optgroup>
 									<option v-for="t in tlist" :value="t.tag">{{ t.tag }}</option>
 								</optgroup>
-							</select>
+							</select>-->
 						</div>
 					</div>
 				</div>
@@ -361,7 +365,7 @@
 					 	this.mileage = tow.mileage;
 					 	this.officer_id = tow.officer_id;
 					 	this.complaint_id = tow.complaint_id;
-					 	this.tags =  (tow.tags != null) ? tow.tags.split(',') : "" ;
+					 	this.tags =  (tow.tags != null) ? tow.tags.split(',') : [] ;
 					 	this.children = tow.children;
 					 	this.photos = tow.photos;
 					 	this.lot_id = parseInt(tow.lot_id);
@@ -385,7 +389,7 @@
 			},
 			updateTowRecord(){
 				this.saveStatus = "Saving Record...";
-		
+				console.log(this.tags.join(','));
 				axios.put('/tows/' + this.id, {
 					vehicle_owner: this.vehicle_owner,
 					phone: this.phone,

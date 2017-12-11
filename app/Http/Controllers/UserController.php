@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 
 class UserController extends Controller
-{
+{   
+    public function assume(Request $request, User $user){
+        Auth::login($user);
+
+        return redirect('/');
+    }
+
     public function index(){
 
         $users = User::paginate(10);

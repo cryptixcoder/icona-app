@@ -21,14 +21,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+Route::get('/assume/{user}', 'UserController@assume');
 Route::get('/home', 'HomeController@index');
 Route::get('/search', 'SearchController@index');
 Route::get('/help', 'HelpController@index');
 
-
 Route::group(['middleware' => 'auth'], function(){
-
+	
+	
 	Route::get('/tows/preview', function(){
 		return view('tows.edit');
 	});
@@ -41,6 +41,9 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('/photos/{photo}/upload', 'UploadController@store');
 
 	Route::get('/tows', 'TowController@index');
+	Route::get('/tows/printall', 'TowController@viewPrintableContracts');
+	Route::post('/tows/printall', 'TowController@renderPrintableContracts');
+
 	Route::get('/tows/{tow}', 'TowController@show');
 	Route::get('/tows/{tow}/valid', 'TowController@tow_validator');
 	Route::post('/tows/create', 'TowController@store');

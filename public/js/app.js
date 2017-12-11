@@ -27272,6 +27272,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -27389,7 +27393,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 				_this3.mileage = tow.mileage;
 				_this3.officer_id = tow.officer_id;
 				_this3.complaint_id = tow.complaint_id;
-				_this3.tags = tow.tags != null ? tow.tags.split(',') : "";
+				_this3.tags = tow.tags != null ? tow.tags.split(',') : [];
 				_this3.children = tow.children;
 				_this3.photos = tow.photos;
 				_this3.lot_id = parseInt(tow.lot_id);
@@ -27410,7 +27414,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 		},
 		updateTowRecord: function updateTowRecord() {
 			this.saveStatus = "Saving Record...";
-
+			console.log(this.tags.join(','));
 			axios.put('/tows/' + this.id, {
 				vehicle_owner: this.vehicle_owner,
 				phone: this.phone,
@@ -49317,20 +49321,48 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col-md-12"
   }, [_c('div', {
     staticClass: "form-group"
-  }, [_c('label', [_vm._v("Tags")]), _vm._v(" "), _c('select', {
-    ref: "tgs",
-    staticClass: "form-control",
-    attrs: {
-      "multiple": "",
-      "name": "tags"
+  }, [_c('label', {
+    staticStyle: {
+      "width": "100%"
     }
-  }, [_c('optgroup', _vm._l((_vm.tlist), function(t) {
-    return _c('option', {
+  }, [_vm._v("Tags")]), _vm._v(" "), _vm._l((_vm.tlist), function(t) {
+    return _c('label', {
+      staticClass: "checkbox-inline"
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.tags),
+        expression: "tags"
+      }],
+      attrs: {
+        "type": "checkbox",
+        "id": t.tag
+      },
       domProps: {
-        "value": t.tag
+        "value": t.tag,
+        "checked": Array.isArray(_vm.tags) ? _vm._i(_vm.tags, t.tag) > -1 : (_vm.tags)
+      },
+      on: {
+        "change": function($event) {
+          var $$a = _vm.tags,
+            $$el = $event.target,
+            $$c = $$el.checked ? (true) : (false);
+          if (Array.isArray($$a)) {
+            var $$v = t.tag,
+              $$i = _vm._i($$a, $$v);
+            if ($$el.checked) {
+              $$i < 0 && (_vm.tags = $$a.concat([$$v]))
+            } else {
+              $$i > -1 && (_vm.tags = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+            }
+          } else {
+            _vm.tags = $$c
+          }
+        }
       }
-    }, [_vm._v(_vm._s(t.tag))])
-  }))])])])]), _vm._v(" "), _c('div', {
+    }), _vm._v(" " + _vm._s(t.tag) + "\n\t\t\t\t\t\t")])
+  })], 2)])]), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col-md-12"

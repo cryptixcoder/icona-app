@@ -48437,7 +48437,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "myModalLabel"
     }
-  }, [_vm._v("Modal title")])])
+  }, [_vm._v("Choose Type")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

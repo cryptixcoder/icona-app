@@ -151,7 +151,7 @@ class TowController extends Controller
 
         $tow = $user->tows()->create([
             'contract_id' => $request->contract_id,
-            'tow_number' => $prefix . "-" .$count,
+            'tow_number' => $prefix . "-" .(000 + $count),
             'latitude' => ($request->latitude) ? $request->latitude : null,
             'longitude' => ($request->longitude) ? $request->longitude : null,
             'state' => "PA"

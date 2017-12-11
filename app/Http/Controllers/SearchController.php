@@ -13,13 +13,13 @@ class SearchController extends Controller
     	$by = $request->by;
 
     	if($by == "tow_number"){
-    		$tows = Tow::parents()->where('tow_number', $term)->get();
+    		$tows = Tow::parents()->where('tow_number', $term)->lastUpdated()->get();
     	}
     	elseif($by == "tags"){
-    		$tows = Tow::parents()->where('tags', 'like', '%' . $term . '%')->get();
+    		$tows = Tow::parents()->where('tags', 'like', '%' . $term . '%')->lastUpdated()->get();
     	}
         elseif($by == "vin"){
-            $tows = Tow::parents()->where('vin', 'like', '%' . $term . '%')->get();
+            $tows = Tow::parents()->where('vin', 'like', '%' . $term . '%')->lastUpdated()->get();
         }  	
 
     	return view('search', [

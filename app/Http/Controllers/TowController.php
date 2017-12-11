@@ -13,30 +13,56 @@ class TowController extends Controller
     public function index(Request $request){
 
         if($request->has('contract')){  
-            $contract = Contract::findOrFail($request->contract);
             
-            if(request()->user()->user_type == "driver"){
-                $tows = request()
-                        ->user()
-                        ->tows()
-                        ->parents()
-                        ->active()
-                        ->contract($request->contract)
-                        ->lastUpdated()
-                        ->paginate(10);
+            if($request->contract === 'private'){
+                if(request()->user()->user_type == "driver"){
+                    $tows = request()
+                            ->user()
+                            ->tows()
+                            ->parents()
+                            ->active()
+                            ->private()
+                            ->lastUpdated()
+                            ->paginate(10);
+                }
+                else{
+                    $tows = Tow::parents()
+                            ->active()
+                            ->private()
+                            ->lastUpdated()
+                            ->paginate(10);
+                }
+
+                return view('tows.private', [
+                    'tows' => $tows
+                ]);
             }
             else{
-                $tows = Tow::parents()
-                        ->active()
-                        ->contract($request->contract)
-                        ->lastUpdated()
-                        ->paginate(10);
-            }
+                $contract = Contract::findOrFail($request->contract);
+                
+                if(request()->user()->user_type == "driver"){
+                    $tows = request()
+                            ->user()
+                            ->tows()
+                            ->parents()
+                            ->active()
+                            ->contract($request->contract)
+                            ->lastUpdated()
+                            ->paginate(10);
+                }
+                else{
+                    $tows = Tow::parents()
+                            ->active()
+                            ->contract($request->contract)
+                            ->lastUpdated()
+                            ->paginate(10);
+                }
 
-            return view('tows.contract', [
-                'tows' => $tows,
-                'contract' => $contract
-            ]);
+                return view('tows.contract', [
+                    'tows' => $tows,
+                    'contract' => $contract
+                ]);
+            }
         }
         else{
             if(request()->user()->user_type == "driver"){
@@ -86,30 +112,56 @@ class TowController extends Controller
 
     public function viewPrintableContracts(Request $request){
         if($request->has('contract')){  
-            $contract = Contract::findOrFail($request->contract);
-            
-            if(request()->user()->user_type == "driver"){
-                $tows = request()
-                        ->user()
-                        ->tows()
-                        ->parents()
-                        ->active()
-                        ->contract($request->contract)
-                        ->lastUpdated()
-                        ->get();
+            if($request->contract == "private"){
+                
+                if(request()->user()->user_type == "driver"){
+                    $tows = request()
+                            ->user()
+                            ->tows()
+                            ->parents()
+                            ->active()
+                            ->private()
+                            ->lastUpdated()
+                            ->get();
+                }
+                else{
+                    $tows = Tow::parents()
+                            ->active()
+                            ->private()
+                            ->lastUpdated()
+                            ->get();
+                }
+    
+                return view('tows.privateselectablecontract', [
+                    'tows' => $tows
+                ]);
             }
             else{
-                $tows = Tow::parents()
-                        ->active()
-                        ->contract($request->contract)
-                        ->lastUpdated()
-                        ->get();
+                $contract = Contract::findOrFail($request->contract);
+                
+                if(request()->user()->user_type == "driver"){
+                    $tows = request()
+                            ->user()
+                            ->tows()
+                            ->parents()
+                            ->active()
+                            ->contract($request->contract)
+                            ->lastUpdated()
+                            ->get();
+                }
+                else{
+                    $tows = Tow::parents()
+                            ->active()
+                            ->contract($request->contract)
+                            ->lastUpdated()
+                            ->get();
+                }
+    
+                return view('tows.selectablecontract', [
+                    'tows' => $tows,
+                    'contract' => $contract
+                ]);
             }
-
-            return view('tows.selectablecontract', [
-                'tows' => $tows,
-                'contract' => $contract
-            ]);
         }
         else{
             abort(404);
@@ -177,7 +229,7 @@ class TowController extends Controller
             'vehicle_color' => $request->vehicle_color,
             'state' => $request->state,
             'tag_number' => $request->tag_number,
-            'vin' => $request->vin,
+            'vin' => strtoupper($request->vin),
             'mileage' => $request->mileage,
             'officer_id' => $request->officer_id,
             'complaint_id' => $request->complaint_id,

@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-md-12">
 							
-    			<h2>Tows for {{ $contract->name }}</h2>
+    			<h2>Private Tows</h2>
 		
                 <form action="/tows/printall" method="post">
                 {!! csrf_field() !!}

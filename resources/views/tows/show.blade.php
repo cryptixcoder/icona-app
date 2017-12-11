@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<div class="container">
+	<div class="container print-page">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<h2>Tow Number: {{ $tow->tow_number }}</h2>
@@ -12,7 +12,7 @@
 
 				<div class="panel panel-default">
 				
-					<table class="table table-striped table-bordered">
+					<table class="table table-striped table-bordered print-table">
 						<tr>
 							<td width="50%">Vehicle Owner:</td>
 							<td>{{ $tow->vehicle_owner }}</td>
@@ -89,13 +89,13 @@
 		
 
 		@foreach($tow->children as $child)
-			<div class="row">
+			<div class="row print-page">
 				<div class="col-md-8 col-md-offset-2">
 					<h2>Tow Number: {{ $child->tow_number }}</h2>
 					<p><a href="/tows/{{ $child->id }}?viewphotos=1">View Photos</a></p>
 					<div class="panel panel-default">
 						
-						<table class="table table-striped table-bordered">
+						<table class="table table-striped table-bordered print-table">
 							<tr>
 								<td style="width: 50%;">Vehicle Year:</td>
 								<td>{{ $child->year }}</td>

@@ -6,6 +6,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h2>Contracts</h2>
+				
 				<a href="/contracts/create" class="btn btn-primary pull-right" style="margin-top: -46px;">Add Contract</a>
 				<div class="panel panel-default">
 					<div class="table-responsive">
@@ -48,6 +49,8 @@
 						</table>
 					</div>
 				</div>
+
+				<a href="/tows?contract=private" class="btn btn-primary">View Private Tows</a>
 			</div>
 		</div>
 	</div>

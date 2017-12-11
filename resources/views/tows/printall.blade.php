@@ -13,7 +13,7 @@
 
 				<div class="panel panel-default">
 				
-					<table class="table table-striped table-bordered">
+					<table class="table table-striped table-bordered print-table">
 						<tr>
 							<td width="50%">Vehicle Owner:</td>
 							<td>{{ $tow->vehicle_owner }}</td>
@@ -96,7 +96,7 @@
 					<p><a href="/tows/{{ $child->id }}?viewphotos=1">View Photos</a></p>
 					<div class="panel panel-default">
 						
-						<table class="table table-striped table-bordered">
+						<table class="table table-striped table-bordered print-table">
 							<tr>
 								<td style="width: 50%;">Vehicle Year:</td>
 								<td>{{ $child->year }}</td>

@@ -83,6 +83,10 @@ class Tow extends Model
         return $query->where('contract_id', $id);
     }
 
+    public function scopePrivate($query){
+        return $query->where('contract_id', NULL);
+    }
+
     public function lot(){
         return $this->belongsTo(Lot::class);
     }

@@ -74,4 +74,9 @@
     .print-page{
         page-break-after: always;
     }
+
+    .print-table td{
+        font-weight: bold;
+        font-size: 19px;
+    }
 }

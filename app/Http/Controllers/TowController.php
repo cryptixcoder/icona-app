@@ -128,7 +128,7 @@ class TowController extends Controller
         $user = $request->user();
 
         $contract = null;
-        $prefix = "000";
+        $prefix = "P";
         $count = 0;
 
         if($request->contract_id){
@@ -145,7 +145,7 @@ class TowController extends Controller
         
         }
         else{
-            $count = (Tow::parents()->where('tow_number', 'like', '000-%')->count() + 1);
+            $count = (Tow::parents()->where('tow_number', 'like', 'P-%')->count() + 1);
         }
 
 

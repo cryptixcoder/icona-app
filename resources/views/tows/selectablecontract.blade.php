@@ -7,8 +7,7 @@
 			<div class="col-md-12">
 							
     			<h2>Tows for {{ $contract->name }}</h2>
-				
-                <new-tow></new-tow>	
+		
                 <form action="/tows/printall" method="post">
                 {!! csrf_field() !!}
 				<div class="panel panel-default">

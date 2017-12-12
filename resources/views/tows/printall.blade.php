@@ -16,7 +16,7 @@
 					<table class="table table-striped table-bordered print-table">
 						<tr>
 							<td width="50%">Reason:</td>
-							<td>{{ (is_null($tow->reason_id)) ? "" : $tow->reason->name }}</td>
+							<td>{{ ($tow->reason) ?  $tow->reason->name : "" }}</td>
 						</tr>
 						<tr>
 							<td width="50%">Vehicle Owner:</td>

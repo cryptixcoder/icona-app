@@ -13,9 +13,10 @@
 				<div class="panel panel-default">
 				
 					<table class="table table-striped table-bordered print-table">
+						
 						<tr>
 							<td width="50%">Reason:</td>
-							<td>{{ $tow->reason->name }}</td>
+							<td>{{ ($tow->reason) ?  $tow->reason->name : "" }}</td>
 						</tr>
 						<tr>
 							<td width="50%">Vehicle Owner:</td>

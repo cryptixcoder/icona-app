@@ -14,14 +14,6 @@
 				
 					<table class="table table-striped table-bordered print-table">
 						<tr>
-							<td width="50%">Vehicle Owner:</td>
-							<td>{{ $tow->vehicle_owner }}</td>
-						</tr>
-						<tr>
-							<td style="width: 50%;">Phone:</td>
-							<td>{{ $tow->phone }}</td>
-						</tr>
-						<tr>
 							<td style="width: 50%;">Location:</td>
 							<td>{{ $tow->location }}</td>
 						</tr>
@@ -64,6 +56,14 @@
 						<tr>
 							<td style="width: 50%;">Complaint ID:</td>
 							<td>{{ $tow->complaint_id }}</td>
+						</tr>
+						<tr>
+							<td width="50%">Vehicle Owner:</td>
+							<td>{{ $tow->vehicle_owner }}</td>
+						</tr>
+						<tr>
+							<td style="width: 50%;">Phone:</td>
+							<td>{{ $tow->phone }}</td>
 						</tr>
 						<tr>
 							<td style="width: 50%;">Lot:</td>

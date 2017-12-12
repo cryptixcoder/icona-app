@@ -228,7 +228,7 @@ class TowController extends Controller
             'year' => $request->year,
             'vehicle_color' => $request->vehicle_color,
             'state' => $request->state,
-            'tag_number' => $request->tag_number,
+            'tag_number' => strtoupper($request->tag_number),
             'vin' => strtoupper($request->vin),
             'mileage' => $request->mileage,
             'officer_id' => $request->officer_id,

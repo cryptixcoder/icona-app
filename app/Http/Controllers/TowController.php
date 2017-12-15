@@ -66,7 +66,13 @@ class TowController extends Controller
         }
         else{
             if(request()->user()->user_type == "driver"){
-                $tows = request()->user()->tows()->parents()->active()->paginate(10);
+                $tows = request()
+                        ->user()
+                        ->tows()
+                        ->parents()
+                        ->active()
+                        ->lastUpdates()
+                        ->paginate(10);
             }
             else{
                 $tows = Tow::parents()

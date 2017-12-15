@@ -28,6 +28,7 @@ class HomeController extends Controller
             $tows = $user->tows()
                          ->parents()
                          ->active()
+                         ->lastUpdated()
                          ->paginate(10);
 
             return view('tows.index', [

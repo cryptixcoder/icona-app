@@ -71,7 +71,7 @@ class TowController extends Controller
                         ->tows()
                         ->parents()
                         ->active()
-                        ->lastUpdates()
+                        ->lastUpdated()
                         ->paginate(10);
             }
             else{

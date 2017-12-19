@@ -23,7 +23,7 @@
 									<tr>
 							
 										<th>TOW NUMBER</th>
-										<th>TOWEE NAME</th>
+										<th>VEHICLE OWNER</th>
 										<th>LOCATION</th>
 										<th>TOW DRIVER</th>
 										<th>TOW ON</th>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App;
+use App\PrivateTowSettings;
 use App\Tow;
 use App\Contract;
 
@@ -188,6 +189,7 @@ class TowController extends Controller
         $contract = null;
         $prefix = "P";
         $count = 0;
+        $privateStartCount = 3961;
 
         if($request->contract_id){
             $contract = Contract::find($request->contract_id);
@@ -203,7 +205,16 @@ class TowController extends Controller
         
         }
         else{
-            $count = (Tow::parents()->where('tow_number', 'like', 'P-%')->count() + 1);
+            $private = PrivateTowSettings::first();
+            $privateCount = $private->count;
+
+            $privateCount->update([
+                'count' => $privateCount + 1
+            ]);
+
+            $count = $privateCount;
+
+            //$count = (Tow::parents()->where('tow_number', 'like', 'P-%')->count() + 1);
         }
 
 

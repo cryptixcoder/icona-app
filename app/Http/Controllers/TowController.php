@@ -208,7 +208,7 @@ class TowController extends Controller
             $private = PrivateTowSettings::first();
             $privateCount = $private->count;
 
-            $privateCount->update([
+            $private->update([
                 'count' => $privateCount + 1
             ]);
 

@@ -37,17 +37,17 @@ class HomeController extends Controller
 
         }
         else{
-            $drivers = count(User::type('driver')->get());
-            $tows = count(Tow::active()->get());
-            $contracts = count(Contract::all());
-            $admins = count(User::type('admin')->get());
+            // $drivers = count(User::type('driver')->get());
+            // $tows = count(Tow::active()->get());
+            // $contracts = count(Contract::all());
+            // $admins = count(User::type('admin')->get());
 
-            return view('home',[
-                'drivers' => $drivers,
-                'tows' => $tows,
-                'contracts' => $contracts,
-                'admins' => $admins                
-            ]);
+            // return view('home',[
+            //     'drivers' => $drivers,
+            //     'tows' => $tows,
+            //     'contracts' => $contracts,
+            //     'admins' => $admins                
+            // ]);
         }
     }
     

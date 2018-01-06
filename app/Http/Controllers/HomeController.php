@@ -37,10 +37,10 @@ class HomeController extends Controller
 
         }
         else{
-            $drivers = count(User::type('driver')->get()->toArray());
-            $tows = count(Tow::active()->get()->toArray());
-            $contracts = count(Contract::all()->toArray());
-            $admins = count(User::type('admin')->get()->toArray());
+            $drivers = User::type('driver')->count();
+            $tows = Tow::active()->count();
+            $contracts = Contract::count();
+            $admins = User::type('admin')->count();
 
             return view('home',[
                 'drivers' => $drivers,
